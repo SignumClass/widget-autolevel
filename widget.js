@@ -1603,7 +1603,7 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
             // Create bounding box
             var material = new THREE.LineDashedMaterial({ 
                 vertexColors: false, color: color,
-                dashSize: 1, gapSize: 1, linewidth: 20,
+                dashSize: 1, gapSize: 1, linewidth: 5,
                 transparent: true,
                 opacity: 0.8,
             });
