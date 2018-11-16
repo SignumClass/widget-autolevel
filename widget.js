@@ -26,7 +26,7 @@ console.log(window["_typeface_js"]);
 */
 
 // Test this element. This code is auto-removed by the chilipeppr.load()
-cprequire_test(["inline:com-chilipeppr-widget-autolevel"], function (autolevel) {
+cprequire_test(["inline:com-chilipeppr-widget-image-stitch"], function (autolevel) {
     console.log("test running of " + autolevel.id);
     autolevel.init();
     
