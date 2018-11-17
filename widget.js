@@ -1435,7 +1435,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
                     if (donecallback) donecallback.call(that);
                 }
                 
-            }
+            };
             
             // now subscribe and then usubscribe so we don't get all responses
             // after the data we want.
