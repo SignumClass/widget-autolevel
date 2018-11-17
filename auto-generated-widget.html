@@ -1488,17 +1488,18 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
                 // dataline: {"r":{"prb":{"e":1,"x":20.150,"y":6.831,"z":-2.916,"a":0.000,"b":0.000,"c":0.000}},"f":[1,0,0,1169]}
                 // new format from G2 / v9
                 //{"ExecStatus":"Done","Id":"123","Cmd":"/bin/bash","Args":["/home/pi/takepicture.py 1 2 3"],"Output":"/home/pi/takepicture.py12"}
-                if ('ExecStatus' in json) {
-                    json = { json };
-                }
+                //if ('ExecStatus' in json) {
+                //    json = { json };
+                //}
                 
-                if ('Done' in json.ExeStatus) {
+                //if ('Done' in json.ExeStatus) {
+                if (json.ExeStatus == 'Done') {
                     // we hit the probe bottom. awesome. done.
                     chilipeppr.unsubscribe("/com-chilipeppr-widget-serialport/recvline", that, callback);
                     that.isSubToRecvline = false;
 
-                    console.log("got to end of G38.2 cmd");
-                    probe.z = //json.r.prb.z;
+                    console.log("Picture successfully saved.");
+                    probe.z = 0;//json.r.prb.z;
                     
                     probe.done = true;
                     probe.ts = new Date();
