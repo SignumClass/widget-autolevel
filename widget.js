@@ -1400,7 +1400,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
                 // new format from G2 / v9
                 //{"ExecStatus":"Done","Id":"123","Cmd":"/bin/bash","Args":["/home/pi/takepicture.py 1 2 3"],"Output":"/home/pi/takepicture.py12"}
                 if ('ExecStatus' in json) {
-                    json = { json };
+                    json = { json }
                 }
                 //console.log(json);
                 if ('Done' in json) {
@@ -1435,7 +1435,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
                     if (donecallback) donecallback.call(that);
                 }
                 
-            };
+            }
             
             // now subscribe and then usubscribe so we don't get all responses
             // after the data we want.
