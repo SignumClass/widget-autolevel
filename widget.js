@@ -26,13 +26,13 @@ console.log(window["_typeface_js"]);
 */
 
 // Test this element. This code is auto-removed by the chilipeppr.load()
-cprequire_test(["inline:com-chilipeppr-widget-image-stitch"], function (autolevel) {
-    console.log("test running of " + autolevel.id);
-    autolevel.init();
+cprequire_test(["inline:com-chilipeppr-widget-image-stitch"], function (imagestitch) {
+    console.log("test running of " + imagestitch.id);
+    imagestitch.init();
     
-    $('#com-chilipeppr-widget-autolevel').css('margin', '30px');
-    $('#com-chilipeppr-widget-autolevel').css('position', 'relative');
-    $('#com-chilipeppr-widget-autolevel').css('background', 'none');
+    $('#com-chilipeppr-widget-imagestitch').css('margin', '30px');
+    $('#com-chilipeppr-widget-imagestitch').css('position', 'relative');
+    $('#com-chilipeppr-widget-imagestitch').css('background', 'none');
     $('body').prepend('<div id="3dviewer"></div>');
 
     chilipeppr.load(
@@ -43,9 +43,9 @@ cprequire_test(["inline:com-chilipeppr-widget-image-stitch"], function (autoleve
         cprequire(['inline:com-chilipeppr-widget-3dviewer'], function (threed) {
             threed.init({doMyOwnDragDrop: true});
             $('#com-chilipeppr-widget-3dviewer .panel-heading').addClass('hidden');
-            //autolevel.addRegionTo3d();
-            //autolevel.loadFileFromLocalStorageKey('com-chilipeppr-widget-autolevel-recent8');
-            //autolevel.toggleShowMatrix();
+            //imagestitch.addRegionTo3d();
+            //imagestitch.loadFileFromLocalStorageKey('com-chilipeppr-widget-imagestitch-recent8');
+            //imagestitch.toggleShowMatrix();
         });
     });
     
@@ -90,16 +90,16 @@ cprequire_test(["inline:com-chilipeppr-widget-image-stitch"], function (autoleve
     
     var testFinalData = [];
     
-    //autolevel.loadTestData(testFinalData);
-    //autolevel.loadFileFromLocalStorageKey('com-chilipeppr-widget-autolevel-recent6');
+    //imagestitch.loadTestData(testFinalData);
+    //imagestitch.loadFileFromLocalStorageKey('com-chilipeppr-widget-imagestitch-recent6');
     
 } /*end_test*/ );
 
 
-cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHelvetiker", "Three"], function () {
+cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "ThreeHelvetiker", "Three"], function () {
     
     return {
-        id: "com-chilipeppr-widget-autolevel",
+        id: "com-chilipeppr-widget-imagestitch",
         url: "(auto fill by runme.js)",       // The final URL of the working widget as a single HTML file with CSS and Javascript inlined. You can let runme.js auto fill this if you are using Cloud9.
         fiddleurl: "(auto fill by runme.js)", // The edit URL. This can be auto-filled by runme.js in Cloud9 if you'd like, or just define it on your own to help people know where they can edit/fork your widget
         githuburl: "(auto fill by runme.js)", // The backing github repo
@@ -121,57 +121,57 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
 
             this.forkSetup();
 
-            $('#com-chilipeppr-widget-autolevel-showregion').click(this.addRegionTo3d.bind(this));
-            $('#com-chilipeppr-widget-autolevel-hideregion').click(this.removeRegionFrom3d.bind(this));
-            $('#com-chilipeppr-widget-autolevel-body .autolevel-elem').blur(this.formUpdate.bind(this));
-            $('.com-chilipeppr-widget-autolevel-autofill').click(this.autoFillData.bind(this));
-            $('.com-chilipeppr-widget-autolevel-run').click(this.startAutoLevel.bind(this));
-            $('.com-chilipeppr-widget-autolevel-stop').click(this.stopAutoLevel.bind(this));
-            $('.com-chilipeppr-widget-autolevel-pause').click(this.pause.bind(this));
+            $('#com-chilipeppr-widget-imagestitch-showregion').click(this.addRegionTo3d.bind(this));
+            $('#com-chilipeppr-widget-imagestitch-hideregion').click(this.removeRegionFrom3d.bind(this));
+            $('#com-chilipeppr-widget-imagestitch-body .imagestitch-elem').blur(this.formUpdate.bind(this));
+            $('.com-chilipeppr-widget-imagestitch-autofill').click(this.autoFillData.bind(this));
+            $('.com-chilipeppr-widget-imagestitch-run').click(this.startimagestitch.bind(this));
+            $('.com-chilipeppr-widget-imagestitch-stop').click(this.stopimagestitch.bind(this));
+            $('.com-chilipeppr-widget-imagestitch-pause').click(this.pause.bind(this));
             
             // toggleprobearea
-            $('.com-chilipeppr-widget-autolevel-toggleprobearea').click(this.toggleProbeArea.bind(this));
+            $('.com-chilipeppr-widget-imagestitch-toggleprobearea').click(this.toggleProbeArea.bind(this));
             
             // runTestProbe
-            $('.com-chilipeppr-widget-autolevel-runtestprobe').click(this.runTestProbe.bind(this));
+            $('.com-chilipeppr-widget-imagestitch-runtestprobe').click(this.runTestProbe.bind(this));
             
             // gcodesendtows
-            $('.com-chilipeppr-widget-autolevel-gcodesendtows').click(this.sendGcodeToWorkspace.bind(this));
+            $('.com-chilipeppr-widget-imagestitch-gcodesendtows').click(this.sendGcodeToWorkspace.bind(this));
             
             // run this method after modal is dismissed
-            //$('#com-chilipeppr-widget-modal-autolevel-start').on('hidden.bs.modal', this.modalComplete.bind(this));
-            $('#com-chilipeppr-widget-modal-autolevel-start .btn-autolevel-go').click(this.modalComplete.bind(this));
+            //$('#com-chilipeppr-widget-modal-imagestitch-start').on('hidden.bs.modal', this.modalComplete.bind(this));
+            $('#com-chilipeppr-widget-modal-imagestitch-start .btn-imagestitch-go').click(this.modalComplete.bind(this));
             
-            $('.com-chilipeppr-widget-autolevel-togglematrix').click( this.toggleShowMatrix.bind(this) );
-            $('.com-chilipeppr-widget-autolevel-viewdata').click( this.showData.bind(this) );
+            $('.com-chilipeppr-widget-imagestitch-togglematrix').click( this.toggleShowMatrix.bind(this) );
+            $('.com-chilipeppr-widget-imagestitch-viewdata').click( this.showData.bind(this) );
             
             // setup del files
-            $('#com-chilipeppr-widget-autolevel .recent-file-delete').click( this.deleteRecentFiles.bind(this));
+            $('#com-chilipeppr-widget-imagestitch .recent-file-delete').click( this.deleteRecentFiles.bind(this));
 
             this.buildRecentFileMenu();
             
             // paste loader
-            $('#com-chilipeppr-widget-autolevel .dropdown-menu .paste-load').click(function(e) {
+            $('#com-chilipeppr-widget-imagestitch .dropdown-menu .paste-load').click(function(e) {
                 e.stopPropagation();
             });
             var that = this;
-            $('#com-chilipeppr-widget-autolevel .dropdown-menu .paste-load-go').click(function(e) {
+            $('#com-chilipeppr-widget-imagestitch .dropdown-menu .paste-load-go').click(function(e) {
                 that.loadText();
             });
             
             // exaggerate detail menu
-            $('.com-chilipeppr-widget-autolevel-exaggerate1x').click(1, this.setExaggerate.bind(this));
-            $('.com-chilipeppr-widget-autolevel-exaggerate10x').click(10, this.setExaggerate.bind(this));
-            $('.com-chilipeppr-widget-autolevel-exaggerate50x').click(50, this.setExaggerate.bind(this));
-            $('.com-chilipeppr-widget-autolevel-exaggerate100x').click(100, this.setExaggerate.bind(this));
+            $('.com-chilipeppr-widget-imagestitch-exaggerate1x').click(1, this.setExaggerate.bind(this));
+            $('.com-chilipeppr-widget-imagestitch-exaggerate10x').click(10, this.setExaggerate.bind(this));
+            $('.com-chilipeppr-widget-imagestitch-exaggerate50x').click(50, this.setExaggerate.bind(this));
+            $('.com-chilipeppr-widget-imagestitch-exaggerate100x').click(100, this.setExaggerate.bind(this));
             
-            //$('#autolevel-run .dropdown-toggle').dropdown()
+            //$('#imagestitch-run .dropdown-toggle').dropdown()
             
             // raycast
-            $('.com-chilipeppr-widget-autolevel-raycast').click(this.rayCast.bind(this));
+            $('.com-chilipeppr-widget-imagestitch-raycast').click(this.rayCast.bind(this));
             // envelope
-            $('.com-chilipeppr-widget-autolevel-envelope').click(this.envelope.bind(this));
-            $('.com-chilipeppr-widget-autolevel-gcodeview').click(this.envelopeView.bind(this));
+            $('.com-chilipeppr-widget-imagestitch-envelope').click(this.envelope.bind(this));
+            $('.com-chilipeppr-widget-imagestitch-gcodeview').click(this.envelopeView.bind(this));
             
             // lazy load tutorial tab youtube vid
             var isVidLoaded = false;
@@ -184,7 +184,7 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
                     if (!isVidLoaded) {
                         console.log("lazy loading vid cuz not loaded");
                         isVidLoaded = true;
-                        $('#autolevel-tutorial').html('<iframe style="width:100%;" class="" src="//www.youtube.com/embed/6WNE3E1ZZYY" frameborder="0" allowfullscreen></iframe>');
+                        $('#imagestitch-tutorial').html('<iframe style="width:100%;" class="" src="//www.youtube.com/embed/6WNE3E1ZZYY" frameborder="0" allowfullscreen></iframe>');
                     }
                 }
                 //e.relatedTarget // previous tab
@@ -193,13 +193,13 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
             console.log(this.name + " done loading.");
         },
         showData: function() {
-            $('#com-chilipeppr-widget-modal-autolevel-view .modal-body textarea').val(JSON.stringify(this.probes, null, " "));
-            $('#com-chilipeppr-widget-modal-autolevel-view .modal-title').text("View Probe Data");
-            $('#com-chilipeppr-widget-modal-autolevel-view').modal('show');
+            $('#com-chilipeppr-widget-modal-imagestitch-view .modal-body textarea').val(JSON.stringify(this.probes, null, " "));
+            $('#com-chilipeppr-widget-modal-imagestitch-view .modal-title').text("View Probe Data");
+            $('#com-chilipeppr-widget-modal-imagestitch-view').modal('show');
         },
         loadText: function() {
             console.log("loading probe data from paste");
-            var data = $('#com-chilipeppr-widget-autolevel .dropdown-menu .paste-load').val();
+            var data = $('#com-chilipeppr-widget-imagestitch .dropdown-menu .paste-load').val();
             var name = "Paste: ";
             if (data.length > 20) name += data.substring(0,20);
             else name += data;
@@ -232,7 +232,7 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
             for (var i = 0; i < localStorage.length; i++){
                 console.log("localStorage.item.key:", localStorage.key(i));
                 var key = localStorage.key(i);
-                if (key.match(/com-chilipeppr-widget-autolevel/))
+                if (key.match(/com-chilipeppr-widget-imagestitch/))
                     localStorage.removeItem(key);
                 
             }
@@ -244,7 +244,7 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
             // get the next avail slot
             var lastSlot = -1;
             for(var ctr = 0; ctr < 100; ctr++) {
-                if ('com-chilipeppr-widget-autolevel-recent' + ctr in localStorage) {
+                if ('com-chilipeppr-widget-imagestitch-recent' + ctr in localStorage) {
                     console.log("found recent file entry. ctr:", ctr);
                     lastSlot = ctr;
                 }
@@ -252,12 +252,12 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
             console.log("lastSlot we found:", lastSlot);
             
             var nextSlot = lastSlot + 1;
-            var recent = localStorage.getItem("com-chilipeppr-widget-autolevel-recent" + nextSlot);
+            var recent = localStorage.getItem("com-chilipeppr-widget-imagestitch-recent" + nextSlot);
             if (recent == null) {
                 console.log("empty slot. filling.");
-                localStorage.setItem("com-chilipeppr-widget-autolevel-recent" + nextSlot, fileStr);
-                localStorage.setItem("com-chilipeppr-widget-autolevel-recent" + nextSlot + "-name", info.name);
-                localStorage.setItem("com-chilipeppr-widget-autolevel-recent" + nextSlot + "-lastMod", info.lastModified);
+                localStorage.setItem("com-chilipeppr-widget-imagestitch-recent" + nextSlot, fileStr);
+                localStorage.setItem("com-chilipeppr-widget-imagestitch-recent" + nextSlot + "-name", info.name);
+                localStorage.setItem("com-chilipeppr-widget-imagestitch-recent" + nextSlot + "-lastMod", info.lastModified);
                 this.buildRecentFileMenu();
             }
             
@@ -265,17 +265,17 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
         buildRecentFileMenu: function() {
             
             // cleanup prev recent files
-            $('#com-chilipeppr-widget-autolevel .dropdown-menu2 > li.recent-file-item').remove();
+            $('#com-chilipeppr-widget-imagestitch .dropdown-menu2 > li.recent-file-item').remove();
             
-            var li = $('#com-chilipeppr-widget-autolevel .dropdown-menu2 > li.recent-files');
+            var li = $('#com-chilipeppr-widget-imagestitch .dropdown-menu2 > li.recent-files');
             console.log("listItems:", li);
             var ctr = 0;
-            var recentName = localStorage.getItem("com-chilipeppr-widget-autolevel-recent" + ctr + "-name");
+            var recentName = localStorage.getItem("com-chilipeppr-widget-imagestitch-recent" + ctr + "-name");
             while(recentName != null) {
                 console.log("recentFile ctr:", ctr, "recentName:", recentName);
-                var recentLastModified = localStorage.getItem("com-chilipeppr-widget-autolevel-recent" + ctr + "-lastMod");
+                var recentLastModified = localStorage.getItem("com-chilipeppr-widget-imagestitch-recent" + ctr + "-lastMod");
                 var rlm = new Date(recentLastModified);
-                var recentSize = localStorage.getItem("com-chilipeppr-widget-autolevel-recent" + ctr).length;
+                var recentSize = localStorage.getItem("com-chilipeppr-widget-imagestitch-recent" + ctr).length;
                 var rsize = parseInt(recentSize / 1024);
                 if (rsize == 0) rsize = 1;
                 var newLi = $(
@@ -286,7 +286,7 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
                     //' <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span></button></a></li>');
                 newLi.insertAfter(li);
                 var that = this;
-                newLi.click("com-chilipeppr-widget-autolevel-recent" + ctr, function(data) {
+                newLi.click("com-chilipeppr-widget-imagestitch-recent" + ctr, function(data) {
                     console.log("got recent file click. data:", data);
                     var key = data.data;
                     that.loadFileFromLocalStorageKey(key);
@@ -294,7 +294,7 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
                 });
 
                 ctr++;
-                recentName = localStorage.getItem("com-chilipeppr-widget-autolevel-recent" + ctr + "-name");
+                recentName = localStorage.getItem("com-chilipeppr-widget-imagestitch-recent" + ctr + "-name");
                 
             }
         },
@@ -328,15 +328,15 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
         matrix: null, // stores our matrix 3d obj
         previousLayerOpacities: [], // store previous opacities that we're overriding
         toggleShowMatrix: function() {
-            if($('.com-chilipeppr-widget-autolevel-togglematrix').hasClass('active')) {
+            if($('.com-chilipeppr-widget-imagestitch-togglematrix').hasClass('active')) {
                 // that means we're showing the matrix, so hide it
                 this.hideProbeMatrix();
-                $('.com-chilipeppr-widget-autolevel-togglematrix').removeClass('active');
+                $('.com-chilipeppr-widget-imagestitch-togglematrix').removeClass('active');
             } else {
                 // show it
                 if (this.probes.length > 0) {
                     this.showProbeMatrix();
-                    $('.com-chilipeppr-widget-autolevel-togglematrix').addClass('active');
+                    $('.com-chilipeppr-widget-imagestitch-togglematrix').addClass('active');
                 } else {
                     this.status("No data to show matrix. Run the probe first.");
                 }
@@ -400,12 +400,12 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
             }
         },
         fadeOutUserObjectJustinVersion: function() {
-            var autolevel = this;
-            if (!autolevel.isFadeOutUserObject && autolevel.user3dObject !== null) {
+            var imagestitch = this;
+            if (!imagestitch.isFadeOutUserObject && imagestitch.user3dObject !== null) {
                 // fade out the user object so our matrix is visible
                 chilipeppr.publish('/com-chilipeppr-widget-3dviewer/wakeanimate', "");
-                var o = autolevel.user3dObject;
-                var that = autolevel;
+                var o = imagestitch.user3dObject;
+                var that = imagestitch;
                 that.previousLayerOpacities = [];
                 o.children.forEach(function iterLayers(lyr) {
                     if (lyr.material == undefined || lyr.material.opacity == undefined) {}
@@ -414,7 +414,7 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
                         lyr.material.opacity = 0.035;
                     }
                 });
-                autolevel.isFadeOutUserObject = true;
+                imagestitch.isFadeOutUserObject = true;
             }
         },
         unfadeOutUserObject: function() {
@@ -489,11 +489,11 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
             */
             var gcodetext = gcodeline.join("\n");
             
-            $('#com-chilipeppr-widget-modal-autolevel-view .modal-body textarea').val(gcodetext);
-            $('#com-chilipeppr-widget-modal-autolevel-view .modal-title').text("Gcode with Auto-Level Applied");
-            $('#com-chilipeppr-widget-modal-autolevel-view').modal('show');
+            $('#com-chilipeppr-widget-modal-imagestitch-view .modal-body textarea').val(gcodetext);
+            $('#com-chilipeppr-widget-modal-imagestitch-view .modal-title').text("Gcode with Auto-Level Applied");
+            $('#com-chilipeppr-widget-modal-imagestitch-view').modal('show');
         },
-        autolevelledGcode: null,
+        imagestitchledGcode: null,
         envelope: function(options) {
             // options are
             /* {
@@ -571,14 +571,14 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
                         var rayIntersects = ray.intersectObject(meshGrp, true);
                         if (rayIntersects[0]) {
                             //item.p2.origz = item.p2.z;
-                            item.p2.autolevelz = rayIntersects[0].point.z + item.p2.z;
-                            item.p2.autolevelz = item.p2.autolevelz.toFixed(4);
+                            item.p2.imagestitchz = rayIntersects[0].point.z + item.p2.z;
+                            item.p2.imagestitchz = item.p2.imagestitchz.toFixed(4);
                             // adjust gcode
                             var origtext = item.args.origtext;
                             if (origtext.match(/z {0,}(-{0,1}\d+\.{0,1}\d*)/i)) {
                                 var z = RegExp.$1;
                                 ctrtextwithzmatch++;
-                                var newtxt = origtext.replace(/z {0,}(-{0,1}\d+\.{0,1}\d*)/i, "Z" + item.p2.autolevelz);
+                                var newtxt = origtext.replace(/z {0,}(-{0,1}\d+\.{0,1}\d*)/i, "Z" + item.p2.imagestitchz);
                                 //item.args.oldtext = item.args.origtext;
                                 //item.args.origtext = newtxt + " (al z mod " + item.p2.origz + ")";
                                 newgcodeline = newtxt + " (al z mod " + item.p2.z + ")";
@@ -604,11 +604,11 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
                                 ctrGCmdRayIntersected++;
                                 
                                 //item.p2.origz = item.p2.z;
-                                item.p2.autolevelz = rayIntersects[0].point.z + item.p2.z;
-                                item.p2.autolevelz = item.p2.autolevelz.toFixed(4);
+                                item.p2.imagestitchz = rayIntersects[0].point.z + item.p2.z;
+                                item.p2.imagestitchz = item.p2.imagestitchz.toFixed(4);
                                 
                                 //item.args.oldtext = item.args.origtext;
-                                newgcodeline = item.args.origtext + "Z" + item.p2.autolevelz + " (al new z)";
+                                newgcodeline = item.args.origtext + "Z" + item.p2.imagestitchz + " (al new z)";
                                 //console.log("adding z. new item:", item);
                             }
                             
@@ -632,8 +632,8 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
             console.log("did user want z added to all G cmds", options.addZToAllGCmds, "ctrGCmd:", ctrGCmd, "ctrGCmdNotValid:", ctrGCmdNotValid, "ctrGCmdRayIntersected:", ctrGCmdRayIntersected);
             console.log("ctr:", ctr, "len of newgcode arr (should be same as ctr):", newgcode.length);
             
-            this.autolevelledGcode = newgcode;
-            return this.autolevelledGcode;
+            this.imagestitchledGcode = newgcode;
+            return this.imagestitchledGcode;
         },
         getUnitMesh: function() {
             // create new mesh that is not amplified so we can calc off of it
@@ -1094,24 +1094,24 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
         runTestProbe: function() {
             this.status("Runing test probe.");
             this.send("G21 G90 (Use mm and abs coords)\n");
-            var probeFeedRate = $('.autolevel-elem.al-coord.probe-fr').val();
+            var probeFeedRate = $('.imagestitch-elem.al-coord.probe-fr').val();
             this.send("G38.2 Z-10 F" + probeFeedRate + "\n");
         },
-        startAutoLevel: function() {
+        startimagestitch: function() {
             this.currentStep = null;
             this.isPaused = false;
-            $('.com-chilipeppr-widget-autolevel-run').popover('hide');
-            $('.com-chilipeppr-widget-autolevel-pause').popover('hide');
-            $('.com-chilipeppr-widget-autolevel-run').prop('disabled', true);
-            $('.com-chilipeppr-widget-autolevel-pause').prop('disabled', false);
+            $('.com-chilipeppr-widget-imagestitch-run').popover('hide');
+            $('.com-chilipeppr-widget-imagestitch-pause').popover('hide');
+            $('.com-chilipeppr-widget-imagestitch-run').prop('disabled', true);
+            $('.com-chilipeppr-widget-imagestitch-pause').prop('disabled', false);
             this.genProbeGcode();
         },
-        stopAutoLevel: function() {
+        stopimagestitch: function() {
             this.isPaused = true;
-            $('.com-chilipeppr-widget-autolevel-stop').popover('hide');
-            $('.com-chilipeppr-widget-autolevel-pause').popover('hide');
-            $('.com-chilipeppr-widget-autolevel-run').prop('disabled', false);
-            $('.com-chilipeppr-widget-autolevel-pause').prop('disabled', true);
+            $('.com-chilipeppr-widget-imagestitch-stop').popover('hide');
+            $('.com-chilipeppr-widget-imagestitch-pause').popover('hide');
+            $('.com-chilipeppr-widget-imagestitch-run').prop('disabled', false);
+            $('.com-chilipeppr-widget-imagestitch-pause').prop('disabled', true);
         },
         formUpdate: function() {
             this.calcSteps();
@@ -1233,20 +1233,20 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
         isPaused: false,
         pause: function() {
             // remove popovers
-            $('.com-chilipeppr-widget-autolevel-pause').popover('hide');
+            $('.com-chilipeppr-widget-imagestitch-pause').popover('hide');
             if (this.isPaused) {
                 // unpause
                 console.log("unpausing");
                 this.status("Unpaused");
                 this.isPaused = false;
                 this.doNextStep();
-                $('.com-chilipeppr-widget-autolevel-pause').removeClass('active');
+                $('.com-chilipeppr-widget-imagestitch-pause').removeClass('active');
             } else {
                 // need to pause
                 console.log("pausing...");
                 this.status("Paused");
                 this.isPaused = true;
-                $('.com-chilipeppr-widget-autolevel-pause').addClass('active');
+                $('.com-chilipeppr-widget-imagestitch-pause').addClass('active');
             }
         },
         doNextStep: function() {
@@ -1271,7 +1271,7 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
                 // we're done
                 console.log("next step is greater than probes array length. done.");
                 this.status("Done running probe. Found all Zs for " + this.probes.length + " locations");
-                this.stopAutoLevel();
+                this.stopimagestitch();
                 
                 // store file automatically
                 var fileStr = JSON.stringify(this.probes);
@@ -1293,9 +1293,9 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
             
             // Jarret Luft's fix
             this.status("Moving to " + pos);
-            this.send("G0 Z" + $("#com-chilipeppr-widget-autolevel .high-z").val() + "\n"); //raise probe
+            this.send("G0 Z" + $("#com-chilipeppr-widget-imagestitch .high-z").val() + "\n"); //raise probe
             this.send("G0 X" + probe.x + " Y" + probe.y + "\n"); //move to next probe point
-            this.send("G0 Z" + $("#com-chilipeppr-widget-autolevel .probe-z").val() + "\n"); //lower probe to starting point
+            this.send("G0 Z" + $("#com-chilipeppr-widget-imagestitch .probe-z").val() + "\n"); //lower probe to starting point
 
             /*
             this.status("Moving to " + pos);
@@ -1336,8 +1336,8 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
                 //} else {
                 //    that.send("G38.2 Z-0.5 F5\n");
                 //}
-                var maxNegZ = $('.autolevel-elem.al-coord.maxneg-z').val();
-                var probeFeedRate = $('.autolevel-elem.al-coord.probe-fr').val();
+                var maxNegZ = $('.imagestitch-elem.al-coord.maxneg-z').val();
+                var probeFeedRate = $('.imagestitch-elem.al-coord.probe-fr').val();
                 if (that.currentStep == 0) {
                     // send long neg z command (hope this works) on 1st step cuz could have high z val
                     that.send("G38.2 Z-10 F" + probeFeedRate + "\n");
@@ -1427,16 +1427,16 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
         },
         isSubToRecvline: false,
         
-        autolevelLineCtr: 0,
+        imagestitchLineCtr: 0,
         send: function(gcode) {
             // send our data
             //chilipeppr.publish("/com-chilipeppr-widget-serialport/send", gcode);
-            chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", { D: gcode, Id: "autolevel" + (this.autolevelLineCtr++)});
+            chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", { D: gcode, Id: "imagestitch" + (this.imagestitchLineCtr++)});
         },
         statEl: null, // cache the status element in DOM
         status: function(txt) {
             console.log("status. txt:", txt);
-            if (this.statEl == null) this.statEl = $('#com-chilipeppr-widget-autolevel-status');
+            if (this.statEl == null) this.statEl = $('#com-chilipeppr-widget-imagestitch-status');
             var len = this.statEl.val().length;
             if (len > 1000) {
                 console.log("truncating auto-level stats");
@@ -1449,7 +1449,7 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
         },
         zsettings: null, // stores our z settings from tinyg
         modalStart: function() {
-            $('#com-chilipeppr-widget-modal-autolevel-start').modal('show');
+            $('#com-chilipeppr-widget-modal-imagestitch-start').modal('show');
             
         },
         getZMinSettings: function(donecallback) {
@@ -1496,7 +1496,7 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
             // read the 3d viewer data and auto-fill the extents
             var b = this.getBbox();
             
-            var stepsevery = $('#com-chilipeppr-widget-autolevel-body .grid-steps').val();
+            var stepsevery = $('#com-chilipeppr-widget-imagestitch-body .grid-steps').val();
             stepsevery = parseFloat(stepsevery);
             
             // Bug fix by Andrew Powell to get gcode that doesn't start at 0,0, i.e. has negative X or Y values in it, to get bounding box auto-fill region to work correctly
@@ -1507,10 +1507,10 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
             //var endy = stepsevery * (parseInt((b.box.max.y - b.box.min.y) / stepsevery) + 1);
             
             //bbox.box.min.x
-            $('#com-chilipeppr-widget-autolevel-body .start-x').val(b.box.min.x);
-            $('#com-chilipeppr-widget-autolevel-body .start-y').val(b.box.min.y);
-            $('#com-chilipeppr-widget-autolevel-body .end-x').val(endx);
-            $('#com-chilipeppr-widget-autolevel-body .end-y').val(endy);
+            $('#com-chilipeppr-widget-imagestitch-body .start-x').val(b.box.min.x);
+            $('#com-chilipeppr-widget-imagestitch-body .start-y').val(b.box.min.y);
+            $('#com-chilipeppr-widget-imagestitch-body .end-x').val(endx);
+            $('#com-chilipeppr-widget-imagestitch-body .end-y').val(endy);
             this.formUpdate();
         },
         user3dObject: null,
@@ -1548,11 +1548,11 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
         },
         calcSteps: function() {
             console.log("calcSteps");
-            var startx = $('#com-chilipeppr-widget-autolevel-body .start-x').val();
-            var starty = $('#com-chilipeppr-widget-autolevel-body .start-y').val();
-            var endx = $('#com-chilipeppr-widget-autolevel-body .end-x').val();
-            var endy = $('#com-chilipeppr-widget-autolevel-body .end-y').val();
-            var stepsevery = $('#com-chilipeppr-widget-autolevel-body .grid-steps').val();
+            var startx = $('#com-chilipeppr-widget-imagestitch-body .start-x').val();
+            var starty = $('#com-chilipeppr-widget-imagestitch-body .start-y').val();
+            var endx = $('#com-chilipeppr-widget-imagestitch-body .end-x').val();
+            var endy = $('#com-chilipeppr-widget-imagestitch-body .end-y').val();
+            var stepsevery = $('#com-chilipeppr-widget-imagestitch-body .grid-steps').val();
             startx = parseFloat(startx);
             starty = parseFloat(starty);
             endx = parseFloat(endx);
@@ -1560,20 +1560,20 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
             stepsevery = parseFloat(stepsevery);
             var stepsx = (endx - startx) / stepsevery;
             var stepsy = (endy - starty) / stepsevery;
-            $('#com-chilipeppr-widget-autolevel-body .calc-steps').text(
+            $('#com-chilipeppr-widget-imagestitch-body .calc-steps').text(
                 "Steps X: " + stepsx + ", Steps Y: " + stepsy);
             return {stepsevery: stepsevery, startx: startx, starty: starty, 
                     endx: endx, endy: endy, stepsx: stepsx, stepsy: stepsy};
         },
         toggleProbeArea: function() {
-            if($('.com-chilipeppr-widget-autolevel-toggleprobearea').hasClass('active')) {
+            if($('.com-chilipeppr-widget-imagestitch-toggleprobearea').hasClass('active')) {
                 // that means we're showing the region, so hide it
                 this.removeRegionFrom3d();
-                $('.com-chilipeppr-widget-autolevel-toggleprobearea').removeClass('active');
+                $('.com-chilipeppr-widget-imagestitch-toggleprobearea').removeClass('active');
             } else {
                 // show it
                 this.addRegionTo3d();
-                $('.com-chilipeppr-widget-autolevel-toggleprobearea').addClass('active');
+                $('.com-chilipeppr-widget-imagestitch-toggleprobearea').addClass('active');
             }
 
         },
@@ -1588,7 +1588,7 @@ cpdefine("inline:com-chilipeppr-widget-autolevel", ["chilipeppr_ready", "ThreeHe
                 this.removeRegionFrom3d();
             }
 
-            $('.com-chilipeppr-widget-autolevel-toggleprobearea').addClass('active');
+            $('.com-chilipeppr-widget-imagestitch-toggleprobearea').addClass('active');
             
             // get bounding box of user data in 3d viewer
             this.getBbox();
