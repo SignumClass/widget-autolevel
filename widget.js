@@ -1734,7 +1734,8 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
             // Load an image file into a custom material
             var material = new THREE.MeshLambertMaterial({
               //map: loader.load('https://s3.amazonaws.com/duhaime/blog/tsne-webgl/assets/cat.jpg')
-              map: loader.load('http://gzsfxbimf8mapspd.myfritz.net:9999/stitch.jpeg')
+              map: loader.load('http://www.rv-kunterbunt.de/images/rv/Startseite/IMG-20160526-WA0000_web.jpeg')
+              //map: loader.load('http://gzsfxbimf8mapspd.myfritz.net:9999/stitch.jpeg')
             });
     
     
