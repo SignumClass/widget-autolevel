@@ -1211,7 +1211,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
                 
                 for(ctry = 0; ctry <= Math.abs(steps.stepsy); ctry++) {
                     
-                    var cx = steps.startx + (ctrx * steps.stepsevery * stepsxMult);
+                    var cx = steps.startx + (ctrx * steps.stepsevery * stepsxMult*0.75);
                     var cy = steps.starty + (ctry * steps.stepsevery * stepsyMult);
 
                     pos = "x:" + cx + ",y:" + cy;
@@ -1236,7 +1236,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
                 
             }
             this.status("Generated " + this.probes.length + " probe locations.");
-            //console.log("probes:", this.probes);
+            console.log("probes:", this.probes);
         },
         currentStep: null, // keep track of which step we're on
         isPaused: false,
