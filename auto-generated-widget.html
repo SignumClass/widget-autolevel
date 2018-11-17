@@ -1189,7 +1189,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
              //chilipeppr.publish("/com-chilipeppr-widget-cayenn/sendCmd", deviceid, cayenncmd);
              
              //cmd += JSON.stringify(payload) + "\n";
-            var cmdws = 'cayenn-sendtcp 192.168.178.23 {"Cmd":"DispencerOn", "TransId":35}\n';
+            var cmdws = 'cayenn-sendtcp 192.168.178.23 {"Cmd":"takepicture", "TransId":999}\n';
 		    chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", cmdws);
             //cayenn-sendtcp 192.168.178.23 {"Cmd":"DispencerOn", "TransId":35}
             //cayenn-sendtcp 192.168.178.23 {"Cmd":"DispencerOn", "TransId":36}
@@ -1393,9 +1393,14 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
             
             // Jarret Luft's fix
             this.status("Moving to " + pos);
-            this.send("G0 Z" + $("#com-chilipeppr-widget-imagestitch .high-z").val() + "\n"); //raise probe
+            //this.send("G0 Z" + $("#com-chilipeppr-widget-imagestitch .high-z").val() + "\n"); //raise probe
             this.send("G0 X" + probe.x + " Y" + probe.y + "\n"); //move to next probe point
-            this.send("G0 Z" + $("#com-chilipeppr-widget-imagestitch .probe-z").val() + "\n"); //lower probe to starting point
+            
+            var cmdws = 'cayenn-sendtcp 192.168.178.23 {"Cmd":"takepicture", "TransId":999}\n';
+		    chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", cmdws);
+            
+            
+            //this.send("G0 Z" + $("#com-chilipeppr-widget-imagestitch .probe-z").val() + "\n"); //lower probe to starting point
 
             /*
             this.status("Moving to " + pos);
