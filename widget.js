@@ -1304,9 +1304,11 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
             //this.send("G0 Z" + $("#com-chilipeppr-widget-imagestitch .high-z").val() + "\n"); //raise probe
             this.send("G0 X" + probe.x + " Y" + probe.y + "\n"); //move to next probe point
             
-            var cmdws = 'cayenn-sendtcp 192.168.178.23 {"Cmd":"takepicture", "TransId":999}\n';
-		    chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", cmdws);
-            
+            //var cmdws = 'cayenn-sendtcp 192.168.178.23 {"Cmd":"takepicture", "TransId":999}\n';
+		    //chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", cmdws);
+		    
+            var cmdexe = "exec id:123 user:pi pass:a /home/pi/takepicture.sh "+ probe.x + " "+ probe.y +" " + $("#com-chilipeppr-widget-imagestitch .probe-z").val();
+             chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", cmdexe); 
             
             //this.send("G0 Z" + $("#com-chilipeppr-widget-imagestitch .probe-z").val() + "\n"); //lower probe to starting point
 
