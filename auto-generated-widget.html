@@ -1190,7 +1190,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
              
              //cmd += JSON.stringify(payload) + "\n";
             var cmdws = 'cayenn-sendtcp 192.168.178.23 {"Cmd":"DispencerOn", "TransId":35}';
-		    chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", cmd);
+		    chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", cmdws);
             //cayenn-sendtcp 192.168.178.23 {"Cmd":"DispencerOn", "TransId":35}
             //cayenn-sendtcp 192.168.178.23 {"Cmd":"DispencerOn", "TransId":36}
             //this.send("G21 G90 (Use mm and abs coords)\n");
