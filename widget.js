@@ -1445,7 +1445,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
             } else {
                 this.isSubToRecvline = true;
                 //chilipeppr.subscribe("/com-chilipeppr-widget-serialport/recvline", this, callback);
-                chilipeppr.subscribe("com-chilipeppr-widget-serialport/ws/recv", that, callback); 
+                chilipeppr.subscribe("com-chilipeppr-widget-serialport/ws/recv", this, callback); 
             }
         },
         isSubToRecvline: false,
