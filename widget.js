@@ -1391,8 +1391,10 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
                 }
                 */
                 console.log(data.data);
-                var json = $.parseJSON(data.data2);
-                console.log(json);
+                console.log(data.dat2);
+                console.log(data.dataline);
+                //var json = $.parseJSON(data.data2);
+                //console.log(json);
                 // G38.2 Z-1 F5 approach
                 // dataline: {"r":{"prb":{"e":1,"x":20.150,"y":6.831,"z":-2.916,"a":0.000,"b":0.000,"c":0.000}},"f":[1,0,0,1169]}
                 // new format from G2 / v9
@@ -1400,7 +1402,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
                 if ('ExecStatus' in json) {
                     json = { json };
                 }
-                console.log(json);
+                //console.log(json);
                 if ('Done' in json) {
                 //if (json.ExeStatus == 'Done') {
                     // we hit the probe bottom. awesome. done.
