@@ -1600,21 +1600,27 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
             */
             
             // Create a texture loader so we can load our image file
-            //var loader = new THREE.TextureLoader();
+            var loader = new THREE.TextureLoader();
+    
+    loader.setTexturePath("https://s3.amazonaws.com/duhaime/blog/tsne-webgl/assets/");
+//To use cross-origin loading of textures, call setCrossOrigin(true):
+    loader.setCrossOrigin(true);
             
             // Load an image file into a custom material
-            //var material = new THREE.MeshLambertMaterial({
-            //  map: loader.load('https://s3.amazonaws.com/duhaime/blog/tsne-webgl/assets/cat.jpg')
-            //});
+            var material = new THREE.MeshLambertMaterial({
+              map: loader.load('https://s3.amazonaws.com/duhaime/blog/tsne-webgl/assets/cat.jpg')
+            });
     
-    var texture;
+    
+    
+    /*var texture;
 	texture = new THREE.TextureLoader().load( "https://s3.amazonaws.com/duhaime/blog/tsne-webgl/assets/cat.jpg" ); //Sets texture from external link
 	var groundmat = new THREE.MeshLambertMaterial({ //Sets color and material attributes for plane
 		color: 0x088A08,
 		map:texture, //Applies texture
 		opacity: 1,
 		side: THREE.DoubleSide //Ground visible from both sides
-	});
+	});*/
 	
 	
 	
@@ -1625,7 +1631,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
             var geometry = new THREE.PlaneGeometry(10, 10*.75);
             
             // combine our image geometry and material into a mesh
-            var mesh = new THREE.Mesh(geometry, groundmat);
+            var mesh = new THREE.Mesh(geometry, material);
             mesh.receiveShadow = false; //Enable shadow
 
 	
