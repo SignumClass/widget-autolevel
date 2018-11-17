@@ -26,7 +26,7 @@ console.log(window["_typeface_js"]);
 */
 
 // Test this element. This code is auto-removed by the chilipeppr.load()
-cprequire_test(["inline:com-chilipeppr-widget-image-stitch"], function (imagestitch) {
+cprequire_test(["inline:com-chilipeppr-widget-imagestitch"], function (imagestitch) {
     console.log("test running of " + imagestitch.id);
     imagestitch.init();
     
