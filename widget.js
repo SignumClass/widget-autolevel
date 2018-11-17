@@ -1406,8 +1406,8 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
                 if ('Done' in json) {
                 //if (json.ExeStatus == 'Done') {
                     // we hit the probe bottom. awesome. done.
-                    //chilipeppr.unsubscribe("/com-chilipeppr-widget-serialport/recvline", that, callback);
-                    chilipeppr.unsubscribe("/com-chilipeppr-widget-serialport/ws/recv", that, callback); 
+                    chilipeppr.unsubscribe("/com-chilipeppr-widget-serialport/recvline", that, callback);
+                    //chilipeppr.unsubscribe("/com-chilipeppr-widget-serialport/ws/recv", that, callback); 
                     that.isSubToRecvline = false;
 
                     console.log("Picture successfully saved.");
@@ -1444,8 +1444,8 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
                 console.log("already subscribed");
             } else {
                 this.isSubToRecvline = true;
-                //chilipeppr.subscribe("/com-chilipeppr-widget-serialport/recvline", this, callback);
-                chilipeppr.subscribe("/com-chilipeppr-widget-serialport/ws/recv", this, callback); 
+                chilipeppr.subscribe("/com-chilipeppr-widget-serialport/recvline", this, callback);
+                //chilipeppr.subscribe("/com-chilipeppr-widget-serialport/ws/recv", this, callback); 
             }
         },
         isSubToRecvline: false,
