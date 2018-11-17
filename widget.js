@@ -816,7 +816,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
         probeMesh: null, // stores the mesh of probe data for later raycasting
         drawMatrix: function() {
                                     
-            var color = '#660000';
+            var color = '#663300';
             
             // Create dashed line material
             var material = new THREE.LineDashedMaterial({ 
