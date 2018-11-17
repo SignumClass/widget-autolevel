@@ -1615,7 +1615,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
             var mesh = new THREE.Mesh(geometry, material);
             
             // set the position of the image mesh in the x,y,z dimensions
-            mesh.position.set(0,0,0)
+            mesh.position.set(1,1,1)
             
             // Add a point light with #fff color, .7 intensity, and 0 distance
             var light = new THREE.PointLight( 0xffffff, 1, 0 );
@@ -1736,7 +1736,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
             // add the image to the scene
             this.regionObj.add(mesh);
             // Add the light to the scene
-            this.regionObj.scene.add(light)
+            this.regionObj.add(light)
 
             
             
