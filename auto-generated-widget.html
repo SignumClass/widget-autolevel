@@ -1714,7 +1714,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
             
             // create a plane geometry for the image with a width of 10
             // and a height that preserves the image's aspect ratio
-            var geometry = new THREE.PlaneGeometry(100, 100*.75);
+            var geometry = new THREE.PlaneGeometry(10, 10*.75);
             
             // combine our image geometry and material into a mesh
             var mesh = new THREE.Mesh(geometry, groundmat);
@@ -1727,7 +1727,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
             mesh.position.set(1,1,1)
             
             // Add a point light with #fff color, .7 intensity, and 0 distance
-            var light = new THREE.PointLight( 0xffffff, 1, 0 );
+            var light = new THREE.PointLight( 0xffffff, 10, 5 );
             
             // Specify the light's position
             light.position.set(1, 1, 100 );
