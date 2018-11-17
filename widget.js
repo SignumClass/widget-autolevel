@@ -1740,7 +1740,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
 
             
             // set the position of the image mesh in the x,y,z dimensions
-            mesh.position.set(steps.startx,steps.starty,0)
+            mesh.position.set(steps.startx+(steps.endx/2),steps.starty+steps.endy,0)
             
             // Add a point light with #fff color, .7 intensity, and 0 distance
             var light = new THREE.PointLight( 0xffffff, 10, 5 );
