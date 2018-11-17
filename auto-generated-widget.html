@@ -1673,8 +1673,8 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
             endx = parseFloat(endx);
             endy = parseFloat(endy);
             stepsevery = parseFloat(stepsevery);
-            var stepsx = (endx - startx) / stepsevery/0.75;
-            var stepsy = (endy - starty) / stepsevery;
+            var stepsx = (endx - startx) / stepsevery*0.75;
+            var stepsy = (endy - starty) / stepsevery/0.75;
             $('#com-chilipeppr-widget-imagestitch-body .calc-steps').text(
                 "Steps X: " + stepsx + ", Steps Y: " + stepsy);
             return {stepsevery: stepsevery, startx: startx, starty: starty, 
@@ -1782,7 +1782,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
                     
                     var circleGeometry = new THREE.CircleGeometry( radius, segments );				
                     var circle = new THREE.Mesh( circleGeometry, material );
-                    var cx = steps.startx + (ctrx * steps.stepsevery * stepsxMult);
+                    var cx = steps.startx + (ctrx * steps.stepsevery * stepsxMult/0.75);
                     var cy = steps.starty + (ctry * steps.stepsevery * stepsyMult*0.75);
                     var cz = z;
                     //console.log("adding circle. ctrx:", ctrx, "ctry:", ctry, "x", cx, "cy", cy);
