@@ -1595,63 +1595,13 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
             
             
             
-            /*
-            * Image
-            */
-            
-            // Create a texture loader so we can load our image file
-            var loader = new THREE.TextureLoader();
-    
-    //loader.setTexturePath("https://s3.amazonaws.com/duhaime/blog/tsne-webgl/assets/");
-//To use cross-origin loading of textures, call setCrossOrigin(true):
-    loader.setCrossOrigin(true);
-            
-            // Load an image file into a custom material
-            var material = new THREE.MeshLambertMaterial({
-              map: loader.load('https://s3.amazonaws.com/duhaime/blog/tsne-webgl/assets/cat.jpg')
-            });
-    
-    
-    
-    /*var texture;
-	texture = new THREE.TextureLoader().load( "https://s3.amazonaws.com/duhaime/blog/tsne-webgl/assets/cat.jpg" ); //Sets texture from external link
-	var groundmat = new THREE.MeshLambertMaterial({ //Sets color and material attributes for plane
-		color: 0x088A08,
-		map:texture, //Applies texture
-		opacity: 1,
-		side: THREE.DoubleSide //Ground visible from both sides
-	});*/
-	
-	
-	
-    
-            
-            // create a plane geometry for the image with a width of 10
-            // and a height that preserves the image's aspect ratio
-            var geometry = new THREE.PlaneGeometry(10, 10*.75);
-            
-            // combine our image geometry and material into a mesh
-            var mesh = new THREE.Mesh(geometry, material);
-            mesh.receiveShadow = false; //Enable shadow
-
-	
-
-            
-            // set the position of the image mesh in the x,y,z dimensions
-            mesh.position.set(1,1,1)
-            
-            // Add a point light with #fff color, .7 intensity, and 0 distance
-            var light = new THREE.PointLight( 0xffffff, 10, 5 );
-            
-            // Specify the light's position
-            light.position.set(1, 1, 100 );
             
             
             
             
             
             
-            var color = '#667700';
+            var color = '#660000';
             
             var steps = this.calcSteps();
             
@@ -1745,6 +1695,62 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
                 color: color,
                 size: 2
             });
+            
+            
+            /*
+            * Image
+            */
+            
+            // Create a texture loader so we can load our image file
+            var loader = new THREE.TextureLoader();
+    
+    //loader.setTexturePath("https://s3.amazonaws.com/duhaime/blog/tsne-webgl/assets/");
+//To use cross-origin loading of textures, call setCrossOrigin(true):
+    loader.setCrossOrigin(true);
+            
+            // Load an image file into a custom material
+            var material = new THREE.MeshLambertMaterial({
+              map: loader.load('https://s3.amazonaws.com/duhaime/blog/tsne-webgl/assets/cat.jpg')
+            });
+    
+    
+    
+    /*var texture;
+	texture = new THREE.TextureLoader().load( "https://s3.amazonaws.com/duhaime/blog/tsne-webgl/assets/cat.jpg" ); //Sets texture from external link
+	var groundmat = new THREE.MeshLambertMaterial({ //Sets color and material attributes for plane
+		color: 0x088A08,
+		map:texture, //Applies texture
+		opacity: 1,
+		side: THREE.DoubleSide //Ground visible from both sides
+	});*/
+	
+	
+	
+    
+            
+            // create a plane geometry for the image with a width of 10
+            // and a height that preserves the image's aspect ratio
+            var geometry = new THREE.PlaneGeometry(steps.endx, steps.endy);
+            
+            // combine our image geometry and material into a mesh
+            var mesh = new THREE.Mesh(geometry, material);
+            mesh.receiveShadow = false; //Enable shadow
+
+	
+
+            
+            // set the position of the image mesh in the x,y,z dimensions
+            mesh.position.set(steps.startx,steps.starty,0)
+            
+            // Add a point light with #fff color, .7 intensity, and 0 distance
+            var light = new THREE.PointLight( 0xffffff, 10, 5 );
+            
+            // Specify the light's position
+            light.position.set(0, 0, 100 );
+            
+            
+            
+            
             
             // create group to put everything into
             this.regionObj = new THREE.Object3D();
