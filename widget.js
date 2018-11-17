@@ -1690,7 +1690,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
                     
                     var circleGeometry = new THREE.CircleGeometry( radius, segments );				
                     var circle = new THREE.Mesh( circleGeometry, material );
-                    var cx = steps.startx + (ctrx * steps.stepsevery * stepsxMult);
+                    var cx = steps.startx + (ctrx * steps.stepsevery * stepsxMult*0.75);
                     var cy = steps.starty + (ctry * steps.stepsevery * stepsyMult);
                     var cz = z;
                     //console.log("adding circle. ctrx:", ctrx, "ctry:", ctry, "x", cx, "cy", cy);
