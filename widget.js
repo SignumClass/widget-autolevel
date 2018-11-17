@@ -1095,10 +1095,11 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
             this.status("Runing test probe.");
             
              //chilipeppr.publish("/com-chilipeppr-widget-cayenn/sendCmd", deviceid, cayenncmd);
-             
+              var cmdexe = "exec id:123 user:pi pass:a /home/pi/takepicture.py "+ probe.x + " "+ probe.y +" " + $("#com-chilipeppr-widget-imagestitch .probe-z").val();
+             chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", cmdexe); 
              //cmd += JSON.stringify(payload) + "\n";
-            var cmdws = 'cayenn-sendtcp 192.168.178.23 {"Cmd":"takepicture", "TransId":999}\n';
-		    chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", cmdws);
+            //var cmdws = 'cayenn-sendtcp 192.168.178.23 {"Cmd":"takepicture", "TransId":999}\n';
+		    //chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", cmdws);
             //cayenn-sendtcp 192.168.178.23 {"Cmd":"DispencerOn", "TransId":35}
             //cayenn-sendtcp 192.168.178.23 {"Cmd":"DispencerOn", "TransId":36}
             //this.send("G21 G90 (Use mm and abs coords)\n");
@@ -1153,8 +1154,8 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
             //this.status("Configuring the TinyG Z Min homing settings for the probe process.");
             //this.send('{"z":{"sn":1,"sv":10,"lv":2,"lb":3.000,"zb":0.000}\n');
             //this.send("(Set TinyG Z to Homing with Offset of 0)\n");
-            this.status("Going into mm and abs coord mode");
-            this.send("G21 G90 (Use mm and abs coords)\n");
+            //this.status("Going into mm and abs coord mode");
+            //this.send("G21 G90 (Use mm and abs coords)\n");
             //this.send("G0 Z1.5\n");
             
             this.status("Generating probe steps.");
@@ -1337,7 +1338,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
                         console.log("got done watchz callback on 1st step. zeroing out z.");
                         that.status("Zeroing out Z on 1st probe as baseline Z.");
                         probe.z = 0;
-                        that.send("G28.3 Z0\n");
+                        //that.send("G28.3 Z0\n");
                     }
                     
                     setTimeout(that.doNextStep.bind(that), 200);
@@ -1353,13 +1354,13 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
                 //}
                 var maxNegZ = $('.imagestitch-elem.al-coord.maxneg-z').val();
                 var probeFeedRate = $('.imagestitch-elem.al-coord.probe-fr').val();
-                if (that.currentStep == 0) {
+                /*if (that.currentStep == 0) {
                     // send long neg z command (hope this works) on 1st step cuz could have high z val
-                    that.send("G38.2 Z-10 F" + probeFeedRate + "\n");
+                    //that.send("G38.2 Z-10 F" + probeFeedRate + "\n");
                 } else {
                     // on subsequent we have a known z near pcb board so no need to go too negative (just in case)
                     that.send("G38.2 Z" + maxNegZ + " F" + probeFeedRate + "\n");
-                }
+                }*/
             }, 3000);
             
         },
