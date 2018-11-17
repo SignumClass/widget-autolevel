@@ -1303,8 +1303,8 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
                 
                 for(ctry = 0; ctry <= Math.abs(steps.stepsy); ctry++) {
                     
-                    var cx = steps.startx + (ctrx * steps.stepsevery * stepsxMult*0.75);
-                    var cy = steps.starty + (ctry * steps.stepsevery * stepsyMult);
+                    var cx = steps.startx + (ctrx * steps.stepsevery * stepsxMult/0.75);
+                    var cy = steps.starty + (ctry * steps.stepsevery * stepsyMult*0.75);
 
                     pos = "x:" + cx + ",y:" + cy;
                                         
