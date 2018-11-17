@@ -1581,8 +1581,8 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
             endx = parseFloat(endx);
             endy = parseFloat(endy);
             stepsevery = parseFloat(stepsevery);
-            var stepsx = (endx - startx) / stepsevery;
-            var stepsy = (endy - starty) / stepsevery/0.75;
+            var stepsx = (endx - startx) / stepsevery/0.75;
+            var stepsy = (endy - starty) / stepsevery;
             $('#com-chilipeppr-widget-imagestitch-body .calc-steps').text(
                 "Steps X: " + stepsx + ", Steps Y: " + stepsy);
             return {stepsevery: stepsevery, startx: startx, starty: starty, 
