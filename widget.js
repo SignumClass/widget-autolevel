@@ -1097,7 +1097,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
              //chilipeppr.publish("/com-chilipeppr-widget-cayenn/sendCmd", deviceid, cayenncmd);
              
              //cmd += JSON.stringify(payload) + "\n";
-            var cmdws = 'cayenn-sendtcp 192.168.178.23 {"Cmd":"DispencerOn", "TransId":35}';
+            var cmdws = 'cayenn-sendtcp 192.168.178.23 {"Cmd":"DispencerOn", "TransId":35}\n';
 		    chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", cmdws);
             //cayenn-sendtcp 192.168.178.23 {"Cmd":"DispencerOn", "TransId":35}
             //cayenn-sendtcp 192.168.178.23 {"Cmd":"DispencerOn", "TransId":36}
