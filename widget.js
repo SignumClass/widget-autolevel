@@ -1093,9 +1093,17 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
         },
         runTestProbe: function() {
             this.status("Runing test probe.");
-            this.send("G21 G90 (Use mm and abs coords)\n");
-            var probeFeedRate = $('.imagestitch-elem.al-coord.probe-fr').val();
-            this.send("G38.2 Z-10 F" + probeFeedRate + "\n");
+            
+             //chilipeppr.publish("/com-chilipeppr-widget-cayenn/sendCmd", deviceid, cayenncmd);
+             
+             //cmd += JSON.stringify(payload) + "\n";
+            var cmdws = 'cayenn-sendtcp 192.168.178.23 {"Cmd":"DispencerOn", "TransId":35}';
+		    chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", cmd);
+            //cayenn-sendtcp 192.168.178.23 {"Cmd":"DispencerOn", "TransId":35}
+            //cayenn-sendtcp 192.168.178.23 {"Cmd":"DispencerOn", "TransId":36}
+            //this.send("G21 G90 (Use mm and abs coords)\n");
+            //var probeFeedRate = $('.imagestitch-elem.al-coord.probe-fr').val();
+            //this.send("G38.2 Z-10 F" + probeFeedRate + "\n");
         },
         startimagestitch: function() {
             this.currentStep = null;
