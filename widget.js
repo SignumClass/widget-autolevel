@@ -1401,7 +1401,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
                     json = { json };
                 }
                 console.log(json);
-                if ('Done' in json.ExeStatus) {
+                if ('Done' in json) {
                 //if (json.ExeStatus == 'Done') {
                     // we hit the probe bottom. awesome. done.
                     //chilipeppr.unsubscribe("/com-chilipeppr-widget-serialport/recvline", that, callback);
