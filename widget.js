@@ -1390,8 +1390,9 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
                     console.log("new dataline:", data.dataline);
                 }
                 */
+                console.log(data);
                 var json = $.parseJSON(data);
-                
+                console.log(json);
                 // G38.2 Z-1 F5 approach
                 // dataline: {"r":{"prb":{"e":1,"x":20.150,"y":6.831,"z":-2.916,"a":0.000,"b":0.000,"c":0.000}},"f":[1,0,0,1169]}
                 // new format from G2 / v9
