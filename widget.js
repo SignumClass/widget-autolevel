@@ -1403,7 +1403,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
                     json = { json }
                 }
                 //console.log(json);
-                if ('Done' in json) {
+                //if ('Done' in json) {
                 //if (json.ExeStatus == 'Done') {
                     // we hit the probe bottom. awesome. done.
                     chilipeppr.unsubscribe("/com-chilipeppr-widget-serialport/recvline", that, callback);
@@ -1433,7 +1433,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
                         this.refreshProbeMatrix();
                     
                     if (donecallback) donecallback.call(that);
-                }
+                //}
                 
             }
             
@@ -1733,7 +1733,8 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
             
             // Load an image file into a custom material
             var material = new THREE.MeshLambertMaterial({
-              map: loader.load('https://s3.amazonaws.com/duhaime/blog/tsne-webgl/assets/cat.jpg')
+              //map: loader.load('https://s3.amazonaws.com/duhaime/blog/tsne-webgl/assets/cat.jpg')
+              map: loader.load('http://192.168.178.31:80/stitch.jpg')
             });
     
     
