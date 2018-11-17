@@ -821,7 +821,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
             // Create dashed line material
             var material = new THREE.LineDashedMaterial({ 
                 vertexColors: false, color: color,
-                dashSize: 1, gapSize: 1, linewidth: 2,
+                dashSize: 1, gapSize: 1, linewidth: 20,
                 transparent: true,
                 opacity: 0.8,
             });
