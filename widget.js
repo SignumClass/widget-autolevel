@@ -1211,8 +1211,8 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
                 
                 for(ctry = 0; ctry <= Math.abs(steps.stepsy); ctry++) {
                     
-                    var cx = steps.startx + (ctrx * steps.stepsevery * stepsxMult/0.75);
-                    var cy = steps.starty + (ctry * steps.stepsevery * stepsyMult*0.75);
+                    var cx = steps.startx + (ctrx * steps.stepseveryX * stepsxMult);
+                    var cy = steps.starty + (ctry * steps.stepseveryY * stepsyMult);
 
                     pos = "x:" + cx + ",y:" + cy;
                                         
@@ -1519,12 +1519,13 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
             // read the 3d viewer data and auto-fill the extents
             var b = this.getBbox();
             
-            var stepsevery = $('#com-chilipeppr-widget-imagestitch-body .grid-steps').val();
-            stepsevery = parseFloat(stepsevery);
+            var stepseveryX = $('#com-chilipeppr-widget-imagestitch-body .grid-steps').val();
+            stepseveryX = parseFloat(stepseveryX);
+            var stepseveryY = stepseveryX *0.75
             
             // Bug fix by Andrew Powell to get gcode that doesn't start at 0,0, i.e. has negative X or Y values in it, to get bounding box auto-fill region to work correctly
-            var endx = (stepsevery * (parseInt((b.box.max.x - b.box.min.x) / stepsevery) + 1)) + b.box.min.x;
-            var endy = (stepsevery * (parseInt((b.box.max.y - b.box.min.y) / stepsevery) + 1)) + b.box.min.y;
+            var endx = (stepseveryX * (parseInt((b.box.max.x - b.box.min.x) / stepseveryX) + 1)) + b.box.min.x;
+            var endy = (stepseveryY * (parseInt((b.box.max.y - b.box.min.y) / stepseveryY) + 1)) + b.box.min.y;
 
             //var endx = stepsevery * (parseInt((b.box.max.x - b.box.min.x) / stepsevery) + 1);
             //var endy = stepsevery * (parseInt((b.box.max.y - b.box.min.y) / stepsevery) + 1);
@@ -1575,17 +1576,20 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
             var starty = $('#com-chilipeppr-widget-imagestitch-body .start-y').val();
             var endx = $('#com-chilipeppr-widget-imagestitch-body .end-x').val();
             var endy = $('#com-chilipeppr-widget-imagestitch-body .end-y').val();
-            var stepsevery = $('#com-chilipeppr-widget-imagestitch-body .grid-steps').val();
+            var stepseveryX = $('#com-chilipeppr-widget-imagestitch-body .grid-steps').val();
+            stepseveryX = parseFloat(stepseveryX);
+            var stepseveryY = stepseveryX*0.75;
+            
             startx = parseFloat(startx);
             starty = parseFloat(starty);
             endx = parseFloat(endx);
             endy = parseFloat(endy);
-            stepsevery = parseFloat(stepsevery);
-            var stepsx = (endx - startx) / stepsevery*0.75;
-            var stepsy = (endy - starty) / stepsevery/0.75;
+            
+            var stepsx = (endx - startx) / stepseveryX;
+            var stepsy = (endy - starty) / stepseveryY;
             $('#com-chilipeppr-widget-imagestitch-body .calc-steps').text(
                 "Steps X: " + stepsx + ", Steps Y: " + stepsy);
-            return {stepsevery: stepsevery, startx: startx, starty: starty, 
+            return {stepseveryX: stepseveryX,stepseveryY: stepseveryY, startx: startx, starty: starty, 
                     endx: endx, endy: endy, stepsx: stepsx, stepsy: stepsy};
         },
         toggleProbeArea: function() {
@@ -1690,8 +1694,8 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
                     
                     var circleGeometry = new THREE.CircleGeometry( radius, segments );				
                     var circle = new THREE.Mesh( circleGeometry, material );
-                    var cx = steps.startx + (ctrx * steps.stepsevery * stepsxMult/0.75);
-                    var cy = steps.starty + (ctry * steps.stepsevery * stepsyMult*0.75);
+                    var cx = steps.startx + (ctrx * steps.stepseveryX * stepsxMult);
+                    var cy = steps.starty + (ctry * steps.stepseveryY * stepsyMult);
                     var cz = z;
                     //console.log("adding circle. ctrx:", ctrx, "ctry:", ctry, "x", cx, "cy", cy);
                     circle.position.set(cx, cy, cz);
