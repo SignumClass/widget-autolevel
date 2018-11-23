@@ -1684,6 +1684,9 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
             
             $('#com-chilipeppr-widget-imagestitch-body .calc-steps').text(
                 "Steps X: " + stepsx + ", Steps Y: " + stepsy, "StepXBound" + (stepsX*stepseveryX));
+                
+            this.status("Steps X: " + stepsx + ", Steps Y: " + stepsy, "StepXBound" + (stepsX*stepseveryX));
+            
             return {stepseveryX: stepseveryX,stepseveryY: stepseveryY, startx: startx, starty: starty, 
                     endx: endx, endy: endy, stepsx: stepsx, stepsy: stepsy};
         },
