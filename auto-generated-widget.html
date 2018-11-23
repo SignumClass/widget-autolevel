@@ -1680,12 +1680,15 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
             var stepsx = (endx - startx) / stepseveryX;
             var stepsy = (endy - starty) / stepseveryY;
             
-            //$('#com-chilipeppr-widget-imagestitch-body .grid-steps').val();
+            
             
             $('#com-chilipeppr-widget-imagestitch-body .calc-steps').text(
                 "Steps X: " + stepsx + ", Steps Y: " + stepsy + " StepXBound" + (Math.round(stepsx)*stepseveryX));
                 
             this.status("Steps X: " + stepsx + ", Steps Y: " + stepsy+ " StepXBound" + (Math.round(stepsx)*stepseveryX));
+            
+            
+            $('#com-chilipeppr-widget-imagestitch-body .grid-steps').val((Math.round(stepsx)*stepseveryX));
             
             return {stepseveryX: stepseveryX,stepseveryY: stepseveryY, startx: startx, starty: starty, 
                     endx: endx, endy: endy, stepsx: stepsx, stepsy: stepsy};
