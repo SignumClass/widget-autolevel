@@ -1595,9 +1595,26 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
                 
             this.status("Steps X: " + stepsx + ", Steps Y: " + stepsy+ " StepXBound" + (Math.round(stepsx)*stepseveryX));
             //$('#com-chilipeppr-widget-imagestitch-body .end-x').a
+            var stepsxMult = stepsx < 0 ? -1 : 1;
+            var stepsyMult = stepsy < 0 ? -1 : 1;
+             for(var ctrx = 0; ctrx <= Math.abs(stepsx); ctrx++) {
+
+                for(var ctry = 0; ctry <= Math.abs(stepsy); ctry++) {
+                    
+                    
+                    var boundx = startx + (ctrx * stepseveryX * stepsxMult);
+                    //var cx = steps.startx + (steps.stepseveryX/2) + (ctrx * steps.stepseveryX * stepsxMult);
+                    //var cy = steps.starty + (ctry * steps.stepseveryY * stepsyMult);
+                    var boundy = starty + (ctry * stepseveryY * stepsyMult);
+                    
+                    
+                }
+                
+            }
             
             //$('#com-chilipeppr-widget-imagestitch-body .grid-steps').val((Math.round(stepsx)*stepseveryX));
-            //$('#com-chilipeppr-widget-imagestitch-body .end-x').val(boundx);
+            $('#com-chilipeppr-widget-imagestitch-body .end-x').val(boundx);
+            $('#com-chilipeppr-widget-imagestitch-body .end-y').val(boundx);
             
             return {stepseveryX: stepseveryX,stepseveryY: stepseveryY, startx: startx, starty: starty, 
                     endx: endx, endy: endy, stepsx: stepsx, stepsy: stepsy};
