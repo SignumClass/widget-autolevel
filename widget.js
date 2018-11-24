@@ -1085,7 +1085,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
             chilipeppr.publish("/com-chilipeppr-widget-3dviewer/sceneremove", this.matrix);
         },
         onDisplay: function() {
-            this.autoFillData();
+            //this.autoFillData();
             this.formUpdate();
         },
         onUndisplay: function() {
@@ -1166,15 +1166,15 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
             // send long neg z command (hope this works)
             //this.send("G38.2 Z-10 F5\n");
                 
-            /*
-            var probe = {firstPos: true, x: this.probes[0].x, y: this.probes[0].y};
+            
+            /*var probe = {firstPos: true, x: this.probes[0].x, y: this.probes[0].y};
                 var that = this;
                 this.watchZ(probe, function() {
                     // this is called when done watching z
                     // we need to set z to zero from 1st probe
                     console.log("got done watchz callback on 1st step. zeroing out z.");
                     that.status("Zeroing out Z on 1st probe as baseline Z.");
-                    that.send("G28.3 Z0\n");
+                    //that.send("G28.3 Z0\n");
                     setTimeout(that.doNextStep.bind(that), 200);
                 });
                 */
@@ -1594,9 +1594,10 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
                 "Steps X: " + stepsx + ", Steps Y: " + stepsy + " StepXBound" + (Math.round(stepsx)*stepseveryX));
                 
             this.status("Steps X: " + stepsx + ", Steps Y: " + stepsy+ " StepXBound" + (Math.round(stepsx)*stepseveryX));
-            
+            //$('#com-chilipeppr-widget-imagestitch-body .end-x').a
             
             //$('#com-chilipeppr-widget-imagestitch-body .grid-steps').val((Math.round(stepsx)*stepseveryX));
+            $('#com-chilipeppr-widget-imagestitch-body .end-x').val(20)
             
             return {stepseveryX: stepseveryX,stepseveryY: stepseveryY, startx: startx, starty: starty, 
                     endx: endx, endy: endy, stepsx: stepsx, stepsy: stepsy};
