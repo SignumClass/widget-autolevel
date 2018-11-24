@@ -1614,7 +1614,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
             
             //$('#com-chilipeppr-widget-imagestitch-body .grid-steps').val((Math.round(stepsx)*stepseveryX));
             $('#com-chilipeppr-widget-imagestitch-body .end-x').val(boundx);
-            $('#com-chilipeppr-widget-imagestitch-body .end-y').val(boundx);
+            $('#com-chilipeppr-widget-imagestitch-body .end-y').val(boundy);
             
             return {stepseveryX: stepseveryX,stepseveryY: stepseveryY, startx: startx, starty: starty, 
                     endx: endx, endy: endy, stepsx: stepsx, stepsy: stepsy};
