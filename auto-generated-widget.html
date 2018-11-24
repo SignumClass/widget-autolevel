@@ -1689,7 +1689,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
             //$('#com-chilipeppr-widget-imagestitch-body .end-x').a
             
             //$('#com-chilipeppr-widget-imagestitch-body .grid-steps').val((Math.round(stepsx)*stepseveryX));
-            $('#com-chilipeppr-widget-imagestitch-body .end-x').val(20)
+            $('#com-chilipeppr-widget-imagestitch-body .end-x').val((Math.round(stepsx)*stepseveryX));
             
             return {stepseveryX: stepseveryX,stepseveryY: stepseveryY, startx: startx, starty: starty, 
                     endx: endx, endy: endy, stepsx: stepsx, stepsy: stepsy};
