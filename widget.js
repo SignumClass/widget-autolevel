@@ -1774,7 +1774,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
             var imagestartY = steps.starty+((steps.endy-steps.starty)) -  halfimageY;
             // create a plane geometry for the image with a width of 10
             // and a height that preserves the image's aspect ratio
-            var geometry = new THREE.PlaneGeometry(Math.abs(steps.endx-steps.startx)+ 2*halfimageX, Math.abs(steps.endy-steps.starty)+ 2*halfimageY);
+            var geometry = new THREE.PlaneGeometry(Math.abs(steps.endx-steps.startx)+ (2*halfimageX), Math.abs(steps.endy-steps.starty)+ (2*halfimageY));
             
             // combine our image geometry and material into a mesh
             var mesh = new THREE.Mesh(geometry, material);
