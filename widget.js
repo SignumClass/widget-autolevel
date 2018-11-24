@@ -1801,7 +1801,7 @@ cpdefine("inline:com-chilipeppr-widget-imagestitch", ["chilipeppr_ready", "Three
 
             
             // set the position of the image mesh in the x,y,z dimensions orgin is the middle of the image
-            mesh.position.set((steps.startx+((steps.endx-steps.startx)))/2 ,(steps.starty+((steps.endy-steps.starty)))/2  ,0);
+            mesh.position.set(steps.startx + ((steps.endx-steps.startx)/2) ,steps.starty + ((steps.endy-steps.starty)/2)  ,0);
             //mesh.position.set(5,(15-2.5)*0.75/2,0);
             
             // Add a point light with #fff color, .7 intensity, and 0 distance
